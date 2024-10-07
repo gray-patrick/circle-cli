@@ -48,6 +48,7 @@ func Execute() {
 	}
 }
 
+// init sets global persistent flags that propagate through every command.
 func init() {
 	cobra.OnInitialize(initConfig)
 
@@ -71,8 +72,6 @@ func initConfig() {
 		viper.SetConfigType("yaml")
 		viper.SetConfigName(".circle-cli")
 	}
-
-	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err != nil {
