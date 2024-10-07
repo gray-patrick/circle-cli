@@ -33,7 +33,7 @@ var transferCmd = &cobra.Command{
 	Long: `Transfer USDC tokens from an origin wallet to a recipient wallet on
 	the Ethereum Sepolia testnet.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		conn, err := ethclient.Dial("https://sepolia.infura.io/v3/398ccc0480ae443891c8768995332342")
+		conn, err := ethclient.Dial(viper.GetString("api_endpoint"))
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -49,7 +49,7 @@ var transferCmd = &cobra.Command{
 			log.Fatal(err)
 		}
 
-		privateKey, err := crypto.HexToECDSA(viper.GetString("privatekey"))
+		privateKey, err := crypto.HexToECDSA(viper.GetString("private_key"))
 		if err != nil {
 			log.Fatal(err)
 		}
